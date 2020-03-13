@@ -62,6 +62,8 @@ public class SetupPresenter {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
                     model.usePlayerUnitPreset();
+                    view.getBoard().getChildren().forEach(node -> node.setDisable(true));
+                    view.getBoard().getChildren().forEach(node -> ((Button) node).setOpacity(1));
                 }
                 updateBoard();
                 updateView();

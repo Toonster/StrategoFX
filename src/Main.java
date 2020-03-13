@@ -42,10 +42,10 @@ public class Main extends Application {
         MainMenuView mainMenuView = new MainMenuView();
         MainMenuPresenter mainMenuPresenter = new MainMenuPresenter(mainMenuView);
 
-        Scene scene = new Scene(mainMenuPresenter.getView(), 1000, 1000);
+        Scene scene = new Scene(presenter2.getView(), 1000, 1000);
         stage.setTitle("Stratego");
         stage.setScene(scene);
         stage.show();
-        
+
     }
 }

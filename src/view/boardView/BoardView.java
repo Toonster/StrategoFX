@@ -16,8 +16,8 @@ public class BoardView extends GridPane {
 
     private void initializeNodes() {
         int paneRows = 10;
+        int paneColumns = 10;
         for (int i = 0; i < paneRows; i++) {
-            int paneColumns = 10;
             for (int j = 0; j < paneColumns; j++) {
                 Button btn = new Button();
                 this.add(btn,i,j);
@@ -39,7 +39,7 @@ public class BoardView extends GridPane {
         this.setBackground(background);
         this.setAlignment(Pos.CENTER);
         for (Node btn : this.getChildren()) {
-            ((Button)btn).setMinSize(75,75);
+            ((Button)btn).setMinSize(65,65);
             ((Button)btn).setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
             GridPane.setHgrow(btn, Priority.ALWAYS);
             GridPane.setVgrow(btn, Priority.ALWAYS);

@@ -99,35 +99,6 @@ public class GamePresenter {
                 }
             }
         });
-
-        view.getLoadBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                FileChooser fileChooser = new FileChooser();
-
-                //Set extension filter for text files
-                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-                fileChooser.getExtensionFilters().add(extFilter);
-
-                Stage openStage = new Stage();
-
-                //Show save file dialog
-                File file = fileChooser.showOpenDialog(openStage);
-
-                if (file != null) {
-                    Game game = null;
-                    try {
-                        game = GameFileManager.load(file.getAbsolutePath());
-                    } catch (StrategoException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    GameView gameView = new GameView();
-                    GamePresenter gamePresenter = new GamePresenter(gameView, game);
-                    view.getScene().setRoot(gameView);
-                    gameView.getScene().getWindow().sizeToScene();
-                }
-            }
-        });
     }
 
     private void updateView() {
