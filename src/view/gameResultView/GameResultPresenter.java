@@ -1,5 +1,6 @@
 package view.gameResultView;
 
+import javafx.scene.control.Label;
 import model.game.GameResult;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -7,9 +8,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import model.game.Game;
 import model.game.GameSetup;
+import model.game.GameStatus;
+import model.unit.UnitColor;
 import view.setupView.SetupPresenter;
 import view.setupView.SetupView;
 
+import java.util.Optional;
 import java.util.Set;
 
 public class GameResultPresenter {
@@ -20,16 +24,24 @@ public class GameResultPresenter {
         this.model = model;
         this.view = view;
         addEventHandlers();
+        updateView();
     }
 
     private void addEventHandlers() {
         view.getBtnStartNew().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                GameSetup model = new GameSetup();
-                SetupView  view = new SetupView();
-                SetupPresenter presenter = new SetupPresenter(view, model);
-                view.getScene().setRoot(view);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Continue confirmation");
+                alert.setHeaderText("The game will start.");
+                alert.setContentText("Are you sure you want to continue?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    GameSetup model = new GameSetup();
+                    SetupView setupView = new SetupView();
+                    SetupPresenter presenter = new SetupPresenter(setupView, model);
+                    view.getScene().setRoot(setupView);
+                }
             }
         });
         view.getBtnExit().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -47,5 +59,18 @@ public class GameResultPresenter {
                 }
             }
         });
+    }
+
+    private void updateView() {
+        UnitColor winner = model.getWinner();
+        Label lblResult = view.getLblResult();
+        Label lblMessage = view.getLblResult();
+        if (winner == UnitColor.RED) {
+            lblResult.setText("You lost");
+            lblMessage.setText("The red team has won the game");
+        } else if (winner == UnitColor.BLUE) {
+            lblResult.setText("You won");
+            lblMessage.setText("Congratulations, you won!");
+        }
     }
 }

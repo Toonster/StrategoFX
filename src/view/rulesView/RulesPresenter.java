@@ -12,11 +12,6 @@ public class RulesPresenter {
     public RulesPresenter(RulesView view) {
         this.view = view;
         addEventHandlers();
-        updateView();
-    }
-
-    private void updateView() {
-
     }
 
     private void addEventHandlers() {

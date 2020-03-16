@@ -73,17 +73,45 @@ public class SetupPresenter {
         continueBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Continue confirmation");
-                alert.setHeaderText("The game will start.");
-                alert.setContentText("Are you sure you want to continue?");
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    Game game = new Game(model.getUnitStartingPositions());
-                    GameView gameView = new GameView();
-                    GamePresenter gamePresenter = new GamePresenter(gameView, game);
-                    view.getScene().setRoot(gameView);
-                    gameView.getScene().getWindow().sizeToScene();
+
+                if (model.isSetupDone()) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Continue confirmation");
+                    alert.setHeaderText("The game will start.");
+                    alert.setContentText("Are you sure you want to continue?");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK) {
+                        Game game = new Game(model.getUnitStartingPositions());
+                        GameView gameView = new GameView();
+                        GamePresenter gamePresenter = new GamePresenter(gameView, game);
+                        view.getScene().setRoot(gameView);
+                        gameView.getScene().getWindow().sizeToScene();
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Not complete");
+                    alert.setContentText("Please complete the setup phase before continuing");
+                    alert.showAndWait();
+                    if (alert.getResult() == ButtonType.OK) {
+                        alert.close();
+                    }
+                }
+            }
+        });
+
+        view.getExitBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setTitle("Exit");
+                alert.setHeaderText("Are you sure you want to exit?");
+                alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+                alert.showAndWait();
+                if (alert.getResult() == ButtonType.YES) {
+                    System.exit(0);
+                } else if (alert.getResult() == ButtonType.NO) {
+                    alert.close();
                 }
             }
         });
@@ -106,7 +134,7 @@ public class SetupPresenter {
                 ((Button) btn).setGraphic(null);
             } else if (selectedUnit.isColor(UnitColor.BLUE)) {
                 String imagePath = (selectedUnit.getColor() + "_" + selectedUnit.getRank()).toLowerCase() + ".png";
-                ((Button) btn).setGraphic(new ImageView(new Image(imagePath, 50, 50, false, false)));
+                ((Button) btn).setGraphic(new ImageView(new Image(imagePath, 40, 40, false, false)));
             }
         }
     }

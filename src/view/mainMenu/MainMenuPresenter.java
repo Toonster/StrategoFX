@@ -83,6 +83,7 @@ public class MainMenuPresenter {
         view.getBtnPlay().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+
                 FileChooser fileChooser = new FileChooser();
 
                 //Set extension filter for text files

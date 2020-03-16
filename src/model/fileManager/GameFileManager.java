@@ -39,10 +39,10 @@ public class GameFileManager {
             Scanner scanner = new Scanner(new File(fileName));
             while (scanner.hasNext()) {
                 int id = scanner.nextInt();
-                Unit unit = units.stream().filter(unit1 -> unit1.getId() == id).findFirst().orElse(null);
                 int x = scanner.nextInt();
                 int y = scanner.nextInt();
                 if (id > 0) {
+                    Unit unit = units.stream().filter(unit1 -> unit1.getId() == id).findFirst().orElse(null);
                     unitPositionMap.put(new Position(x, y), unit);
                 }
             }
@@ -52,7 +52,7 @@ public class GameFileManager {
             throw new StrategoException("Error loading file");
         }
         Game game = new Game(unitPositionMap);
-        game.completeUnitList();
+        game.completeUnitList(unitManager);
         return game;
     }
 }
