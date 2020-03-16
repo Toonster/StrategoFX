@@ -46,5 +46,6 @@ public class BoardView extends GridPane {
             GridPane.setFillWidth(btn, true);
             GridPane.setFillHeight(btn, true);
         }
+        this.setMaxSize(750,750);
     }
 }

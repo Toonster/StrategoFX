@@ -1,17 +1,17 @@
 package view.gameResultView;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import model.game.GameResult;
 import model.game.GameStatus;
 import model.unit.UnitColor;
 
 
-public class GameResultView extends BorderPane {
+public class GameResultView extends VBox {
 
-    private VBox vBox;
     private Label lblMessage;
     private Label lblResult;
     private Button btnStartNew;
@@ -23,32 +23,42 @@ public class GameResultView extends BorderPane {
     }
 
     private void layoutNodes() {
-        this.getStylesheets().add("/stylesheets/css.css");
-        vBox.getChildren().addAll(lblResult, lblMessage, btnStartNew, btnExit);
-        setCenter(vBox);
+        this.getStylesheets().add("stratego.css");
+        this.getChildren().add(lblResult);
+        this.getChildren().add(lblMessage);
+        this.getChildren().add(btnStartNew);
+        this.getChildren().add(btnExit);
     }
 
     private void initialiseNodes() {
-        GameStatus status = GameStatus.RUNNING;
-        GameResult gameResult = new GameResult(status);
-        vBox = new VBox();
-        if (gameResult.getWinner() == UnitColor.RED) {
-            lblResult = new Label("You lost");
-            lblMessage = new Label("The red team has won the game");
-        } else if (gameResult.getWinner() == UnitColor.BLUE) {
-            lblResult = new Label("You won");
-            lblMessage = new Label("Congratulations, you won!");
-        }
+        lblMessage = new Label("Message");
+        lblResult = new Label("Result");
         btnExit = new Button("Exit");
         btnStartNew = new Button("Start new game");
+        btnExit.setId("setupBtn");
+        btnStartNew.setId("setupBtn");
+        Image image = new Image("stratego.png");
+        BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        Background background = new Background(backgroundImage);
+        this.setBackground(background);
+        this.setAlignment(Pos.CENTER);
     }
 
-    public Button getBtnStartNew() {
+    protected Button getBtnStartNew() {
         return btnStartNew;
     }
 
-    public Button getBtnExit() {
+    protected Button getBtnExit() {
         return btnExit;
+    }
+
+    protected Label getLblMessage() {
+        return lblMessage;
+    }
+
+    protected Label getLblResult() {
+        return lblResult;
     }
 }
 

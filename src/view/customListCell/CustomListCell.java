@@ -17,7 +17,7 @@ public class CustomListCell extends ListCell<Unit> {
             setGraphic(null);
         } else {
             String imagePath = (unit.getColor() + "_" + unit.getRank()).toLowerCase() + ".png";
-            imageView.setImage(new Image(imagePath, 50, 50, false, false));
+            imageView.setImage(new Image(imagePath, 40, 40, false, false));
             setText(unit.getRank().name());
             setGraphic(imageView);
         }

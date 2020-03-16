@@ -24,11 +24,11 @@ public class SettingsView extends GridPane {
         add(btnSound, 3,3,3,1);
         add(btnback,3,4,4,1);
         setAlignment(Pos.CENTER);
-        setBackground(new Background(new BackgroundImage(new Image("stratego.png"),
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                new BackgroundPosition(Side.LEFT,0,false,Side.BOTTOM,0,false),
-                new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,true,true,true,true))));
+        Image image = new Image("stratego.png");
+        BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        Background background = new Background(backgroundImage);
+        this.setBackground(background);
     }
 
     private void initialiseNodes() {

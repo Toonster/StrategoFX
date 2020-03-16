@@ -37,31 +37,33 @@ public class SetupView extends HBox {
         board = new BoardView();
         listOfUnplacedUnits = new ListView<>();
         vBox = new VBox();
-        infoText = new TextArea("Welcome to the setup phase of Stratego. Place your units on the bottom 4 rows of the model.board. Units can be overwritten. A standard configuration is available. Click the next button once all your units have been placed and you want to continue.");
+        infoText = new TextArea("Welcome to the setup phase of Stratego. Place your units on the bottom 4 rows of the board. Units can be overwritten. A standard configuration is available. Click the next button once all your units have been placed and you want to continue.");
         continueBtn = new Button("Continue");
-        standardConfigBtn = new Button("Use unit preset");
+        standardConfigBtn = new Button("Use preset");
         exitBtn = new Button("Exit");
         rightVBox = new VBox();
         unplacedUnitsLabel = new Label("Unplaced Units");
     }
 
     private void layoutNodes() {
+
         continueBtn.setId("setupBtn");
         standardConfigBtn.setId("setupBtn");
         exitBtn.setId("setupBtn");
         this.getStylesheets().add("stratego.css");
-        setBackground(new Background(new BackgroundImage(new Image("stratego.png"),
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                new BackgroundPosition(Side.LEFT,0,false,Side.BOTTOM,0,false),
-                new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,true,true,true,true))));
+        Image image = new Image("stratego.png");
+        BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        Background background = new Background(backgroundImage);
+        this.setBackground(background);
         listOfUnplacedUnits.setPrefWidth(200);
         vBox.setPrefWidth(200);
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(0,10,0,0));
+        rightVBox.setPadding(new Insets(10));
         listOfUnplacedUnits.setPadding(new Insets(0,0,0,10));
         unplacedUnitsLabel.setTextFill(Color.WHITE);
-        unplacedUnitsLabel.setStyle("-fx-font-size: 15");
+        unplacedUnitsLabel.setStyle("-fx-font-size: 20");
         infoText.setWrapText(true);
         infoText.setFont(new Font(15));
         infoText.setEditable(false);
@@ -75,7 +77,10 @@ public class SetupView extends HBox {
         this.getChildren().addAll(vBox, board, rightVBox);
         HBox.setHgrow(board, Priority.ALWAYS);
         rightVBox.setMinSize(100,300);
-        vBox.setMinSize(100,200);
+        vBox.setMinSize(100,500);
+        vBox.setAlignment(Pos.CENTER);
+        rightVBox.setAlignment(Pos.CENTER);
+        this.setAlignment(Pos.CENTER);
     }
 
     protected ListView<Unit> getListOfUnplacedUnits() {
@@ -92,5 +97,9 @@ public class SetupView extends HBox {
 
     protected Button getContinueBtn() {
         return continueBtn;
+    }
+
+    protected Button getExitBtn() {
+        return exitBtn;
     }
 }

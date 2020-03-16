@@ -334,8 +334,7 @@ public class Game {
      * Dit wordt gebruikt bij het laden van een spel
      */
 
-    public void completeUnitList() {
-        UnitManager unitManager = new UnitManager();
+    public void completeUnitList(UnitManager unitManager) {
         List<Unit> freshUnitList = unitManager.getUnits();
         for (Unit unitToAdd : freshUnitList) {
             if (units.stream().noneMatch(unit -> unit.getId() == unitToAdd.getId())) {

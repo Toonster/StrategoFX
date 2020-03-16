@@ -84,4 +84,8 @@ public class GameSetup {
     public Map<Position, Unit> getUnitStartingPositions() {
         return unitStartingPositions;
     }
+
+    public boolean isSetupDone() {
+        return unplacedUnits.size() == 0;
+    }
 }

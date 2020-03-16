@@ -29,20 +29,20 @@ public class Main extends Application {
 
         Map<Position, Unit> initialUnitPositions = new HashMap<>();
         initialUnitPositions.put(new Position(7,6), new Unit(Rank.General, UnitColor.BLUE));
-        initialUnitPositions.put(new Position(6,6), new Unit(Rank.Captain, UnitColor.RED));
-        initialUnitPositions.put(new Position(6,5), new Unit(Rank.Captain, UnitColor.RED));
+        initialUnitPositions.put(new Position(6,6), new Unit(Rank.Flag, UnitColor.RED));
+        initialUnitPositions.put(new Position(6,6), new Unit(Rank.Flag, UnitColor.RED));
 
 
         SetupView setupView = new SetupView();
-        GameSetup setup = new GameSetup();
-        SetupPresenter presenter2 = new SetupPresenter(setupView, setup);
-        GameView view = new GameView();
+        /*GameSetup setup = new GameSetup();*/
+        /*SetupPresenter presenter2 = new SetupPresenter(setupView, setup);*/
+        /*GameView view = new GameView();
         Game model = new Game(initialUnitPositions);
-        GamePresenter presenter = new GamePresenter(view, model);
+        GamePresenter presenter = new GamePresenter(view, model);*/
         MainMenuView mainMenuView = new MainMenuView();
         MainMenuPresenter mainMenuPresenter = new MainMenuPresenter(mainMenuView);
 
-        Scene scene = new Scene(presenter2.getView(), 1000, 1000);
+        Scene scene = new Scene(mainMenuPresenter.getView(),1200,750);
         stage.setTitle("Stratego");
         stage.setScene(scene);
         stage.show();
