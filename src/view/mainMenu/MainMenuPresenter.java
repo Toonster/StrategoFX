@@ -1,7 +1,9 @@
 package view.mainMenu;
 
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.exception.StrategoException;
 import model.fileManager.GameFileManager;
@@ -57,7 +59,15 @@ public class MainMenuPresenter {
             public void handle(ActionEvent actionEvent) {
                 RulesView rulesView = new RulesView();
                 RulesPresenter presenter = new RulesPresenter(rulesView);
+                Stage rulesStage = new Stage();
+                rulesStage.initOwner(view.getScene().getWindow());
+                rulesStage.initModality(Modality.APPLICATION_MODAL);
+                rulesStage.setScene(new Scene(rulesView));
+                rulesStage.showAndWait();
+/*
                 view.getScene().setRoot(rulesView);
+*/
+
             }
         });
 
@@ -89,6 +99,9 @@ public class MainMenuPresenter {
                 //Set extension filter for text files
                 FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
                 fileChooser.getExtensionFilters().add(extFilter);
+
+                fileChooser.setTitle("Choose save");
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
                 Stage openStage = new Stage();
 

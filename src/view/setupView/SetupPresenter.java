@@ -43,8 +43,12 @@ public class SetupPresenter {
                         int y = GridPane.getRowIndex(btn);
                         Unit unitToPlace = view.getListOfUnplacedUnits().getSelectionModel().getSelectedItem();
                         model.setUnitPosition(unitToPlace, new Position(x, y));
-                        String imagePath = (model.getPlacedUnit().getColor() + "_" + model.getPlacedUnit().getRank()).toLowerCase() + ".png";
-                        ((Button) btn).setGraphic(new ImageView(new Image(imagePath, 50, 50, false, false)));
+                        try {
+                            String imagePath = (model.getPlacedUnit().getColor() + "_" + model.getPlacedUnit().getRank()).toLowerCase() + ".png";
+                            ((Button) btn).setGraphic(new ImageView(new Image(imagePath, 50, 50, false, false)));
+                        } catch (Exception ignored) {
+
+                        }
                         updateView();
                     }
                 });
@@ -56,7 +60,7 @@ public class SetupPresenter {
             public void handle(MouseEvent mouseEvent) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Overwrite confirmation");
-                alert.setHeaderText("This setup has been used by the winner of many Stratego tournaments. Your units " +
+                alert.setHeaderText("This setup has been used by the winner of many Stratego tournaments.\n Your units " +
                         "will be overwritten and you will not be able to alter them any more.");
                 alert.setContentText("Are you sure you want to continue?");
                 Optional<ButtonType> result = alert.showAndWait();

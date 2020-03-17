@@ -25,7 +25,6 @@ import view.gameResultView.GameResultView;
 
 import java.io.File;
 import java.util.List;
-import java.util.Optional;
 
 public class GamePresenter {
 
@@ -132,30 +131,21 @@ public class GamePresenter {
                 }
             }
         }
-        ListView<Unit> redCapturedUnits = view.getRedCapturedUnits();
-        ObservableList<Unit> obsListRed = FXCollections.observableArrayList(model.getCapturedUnits(UnitColor.RED));
-        redCapturedUnits.setItems(obsListRed);
-        redCapturedUnits.setCellFactory(param -> new CustomListCell());
-
-        ListView<Unit> blueCapturedUnits = view.getBlueCapturedUnits();
-        ObservableList<Unit> obsListBlue = FXCollections.observableArrayList(model.getCapturedUnits(UnitColor.BLUE));
-        blueCapturedUnits.setItems(obsListBlue);
-        blueCapturedUnits.setCellFactory(param -> new CustomListCell());
 
         List<Unit> redCapturedUnits2 = model.getCapturedUnits(UnitColor.RED);
-        view.getRedUnits().getChildren().clear();
+        view.getRedCapturedUnits().getChildren().clear();
         for (Unit unit : redCapturedUnits2) {
             String imagePath = (unit.getColor() + "_" + unit.getRank()).toLowerCase() + ".png";
             ImageView imageView = new ImageView(new Image(imagePath, 50, 50, false, false));
-            view.getRedUnits().getChildren().add(imageView);
+            view.getRedCapturedUnits().getChildren().add(imageView);
         }
 
         List<Unit> blueCapturedUnits2 = model.getCapturedUnits(UnitColor.BLUE);
-        view.getBlueUnits().getChildren().clear();
+        view.getBlueCapturedUnits().getChildren().clear();
         for (Unit unit : blueCapturedUnits2) {
             String imagePath = (unit.getColor() + "_" + unit.getRank()).toLowerCase() + ".png";
             ImageView imageView = new ImageView(new Image(imagePath, 50, 50, false, false));
-            view.getBlueUnits().getChildren().add(imageView);
+            view.getBlueCapturedUnits().getChildren().add(imageView);
         }
     }
 }

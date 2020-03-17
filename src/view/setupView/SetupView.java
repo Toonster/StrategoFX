@@ -47,6 +47,7 @@ public class SetupView extends HBox {
 
     private void layoutNodes() {
 
+        unplacedUnitsLabel.setId("unplacedUnitsLbl");
         continueBtn.setId("setupBtn");
         standardConfigBtn.setId("setupBtn");
         exitBtn.setId("setupBtn");
@@ -57,13 +58,12 @@ public class SetupView extends HBox {
         Background background = new Background(backgroundImage);
         this.setBackground(background);
         listOfUnplacedUnits.setPrefWidth(200);
-        vBox.setPrefWidth(200);
+        vBox.setMaxWidth(300);
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(0,10,0,0));
         rightVBox.setPadding(new Insets(10));
+        rightVBox.setSpacing(10);
         listOfUnplacedUnits.setPadding(new Insets(0,0,0,10));
-        unplacedUnitsLabel.setTextFill(Color.WHITE);
-        unplacedUnitsLabel.setStyle("-fx-font-size: 20");
         infoText.setWrapText(true);
         infoText.setFont(new Font(15));
         infoText.setEditable(false);
@@ -81,6 +81,8 @@ public class SetupView extends HBox {
         vBox.setAlignment(Pos.CENTER);
         rightVBox.setAlignment(Pos.CENTER);
         this.setAlignment(Pos.CENTER);
+        HBox.setHgrow(vBox, Priority.ALWAYS);
+
     }
 
     protected ListView<Unit> getListOfUnplacedUnits() {
