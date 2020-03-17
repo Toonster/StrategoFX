@@ -21,12 +21,6 @@ public class SettingsPresenter {
         updateView();
     }
 
-    private void setScreenStandard() {
-        BorderPane.setMargin(view, new Insets(((double) (720 - 575) / 2), 0, 0, 160));
-        view.setScaleX(1);
-        view.setScaleY(1);
-    }
-
     private void updateView() {
     }
 
@@ -39,12 +33,8 @@ public class SettingsPresenter {
 
                 if (!stage.isFullScreen()) {
                     stage.setFullScreen(true);
-                    BorderPane.setMargin(view, new Insets(((double) (1280 - 720) / 2), 0, 0, 515));
-                    view.setScaleX(1.2);
-                    view.setScaleY(1.2);
-                } else if (stage.isFullScreen()){
+                } else {
                     stage.setFullScreen(false);
-                    setScreenStandard();
                 }
 
             }

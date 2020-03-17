@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Screen;
 
 public class BoardView extends GridPane {
 
@@ -46,6 +47,6 @@ public class BoardView extends GridPane {
             GridPane.setFillWidth(btn, true);
             GridPane.setFillHeight(btn, true);
         }
-        this.setMaxSize(750,750);
+        this.setMaxSize(Screen.getPrimary().getBounds().getMaxY()*0.7,800);
     }
 }

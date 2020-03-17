@@ -66,6 +66,19 @@
     -fx-background-radius: 10;
 }
 
+#unplacedUnitsLbl, #logLbl {
+    -fx-text-fill: gold;
+    -fx-font-family: 'Algerian', serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-color: black;
+    -fx-background-radius: 10;
+    -fx-border-color: gold;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 5px;
+}
+
 .button {
     -fx-background-color: transparent;
     -fx-background-radius:0;
@@ -76,9 +89,14 @@
 .button:hover {
     -fx-background-color: transparent;
     -fx-background-radius:0;
-    -fx-border-color:lime;
+    -fx-border-color:gold;
     -fx-border-width: 1;
     -fx-background-insets: 0;
+}
+
+#capturedUnitsPane{
+    -fx-background-color: black;
+    -fx-opacity: 0.8;
 }
 
 .label {
@@ -121,17 +139,24 @@
 
 .list-cell {
     -fx-background-color: transparent;
-    -fx-text-fill: white;
+    -fx-text-fill: gold;
+    -fx-font-size: 15;
 }
 .list-view {
     -fx-background-color: black;
     -fx-opacity: 0.8;
 }
 
+.list-cell:selected {
+    -fx-background-color: gold;
+    -fx-text-fill: black;
+    -fx-opacity: 0.8;
+}
+
 .scroll-bar:horizontal .track,
 .scroll-bar:vertical .track{
-    -fx-background-color :transparent;
-    -fx-border-color :transparent;
+    -fx-background-color :derive(black,90.0%);
+    -fx-border-color :derive(black,90.0%);
     -fx-background-radius : 0.0em;
     -fx-border-radius :2.0em;
 }
@@ -167,9 +192,9 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color :derive(black,90.0%);
-    -fx-background-insets : 2.0, 0.0, 0.0;
-    -fx-background-radius : 2.0em;
+    -fx-background-color: white;
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 2.0em;
 }
 
 .scroll-bar:horizontal .thumb:hover,
