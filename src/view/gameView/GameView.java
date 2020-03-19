@@ -63,8 +63,8 @@ public class GameView extends BorderPane {
         redCapturedUnits.setPrefColumns(20);
         redCapturedUnits.setAlignment(Pos.CENTER_RIGHT);
         redCapturedUnits.setMinHeight(50);
-        redCapturedUnits.setMaxWidth(board.getMaxWidth());
-        blueCapturedUnits.setMaxWidth(board.getMaxWidth());
+        redCapturedUnits.setMaxWidth(board.getMaxWidth()*2);
+        blueCapturedUnits.setMaxWidth(board.getMaxWidth()*2);
         blueCapturedUnits.setMinHeight(50);
         blueCapturedUnits.setAlignment(Pos.CENTER);
         blueCapturedUnits.setPrefColumns(20);

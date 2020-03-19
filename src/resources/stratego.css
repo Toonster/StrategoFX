@@ -145,6 +145,7 @@
 .list-view {
     -fx-background-color: black;
     -fx-opacity: 0.8;
+    -fx-font-family: 'Algerian', Serif;
 }
 
 .list-cell:selected {
