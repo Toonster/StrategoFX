@@ -1,26 +1,12 @@
-import model.common.Position;
-import model.game.Game;
-import model.game.GameResult;
-import model.game.GameSetup;
-import model.game.GameStatus;
-import view.gameResultView.GameResultPresenter;
-import view.gameResultView.GameResultView;
-import view.gameView.GamePresenter;
-import view.gameView.GameView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.game.GameResult;
+import model.game.GameStatus;
+import view.gameResultView.GameResultPresenter;
+import view.gameResultView.GameResultView;
 import view.mainMenu.MainMenuPresenter;
 import view.mainMenu.MainMenuView;
-import view.mediaplayer.MediaPlayer;
-import view.setupView.SetupPresenter;
-import view.setupView.SetupView;
-import model.unit.Rank;
-import model.unit.Unit;
-import model.unit.UnitColor;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main extends Application {
 
@@ -31,18 +17,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-
-        Map<Position, Unit> initialUnitPositions = new HashMap<>();
-        initialUnitPositions.put(new Position(7,6), new Unit(Rank.General, UnitColor.BLUE));
-        initialUnitPositions.put(new Position(6,6), new Unit(Rank.Flag, UnitColor.RED));
-
-
-        SetupView setupView = new SetupView();
-        GameSetup setup = new GameSetup();
-        SetupPresenter presenter2 = new SetupPresenter(setupView, setup);
-        GameView view = new GameView();
-        Game model = new Game(initialUnitPositions);
-        GamePresenter presenter = new GamePresenter(view, model);
         MainMenuView mainMenuView = new MainMenuView();
         MainMenuPresenter mainMenuPresenter = new MainMenuPresenter(mainMenuView);
         /*MediaPlayer.playMusic();*/
@@ -50,7 +24,7 @@ public class Main extends Application {
         GameResultView gameResultView = new GameResultView();
         GameResultPresenter gameResultPresenter = new GameResultPresenter(gameResult, gameResultView);
 
-        Scene scene = new Scene(view,1200,750);
+        Scene scene = new Scene(mainMenuView, 1200, 800);
         stage.setTitle("Stratego");
         stage.setScene(scene);
         stage.show();

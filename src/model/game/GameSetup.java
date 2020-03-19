@@ -9,7 +9,9 @@ import model.unit.UnitColor;
 import model.unit.UnitManager;
 import model.unitPositionPreset.PlayerUnitPreset;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GameSetup {
 

@@ -6,7 +6,10 @@ import model.positionInitializer.PositionInitializerFactory;
 import model.unit.Unit;
 import model.unit.UnitColor;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class AiUnitSetup {
 

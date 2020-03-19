@@ -2,10 +2,10 @@ package view.gameView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.text.TextAlignment;
 import view.boardView.BoardView;
 
 public class GameView extends HBox {
@@ -66,7 +66,7 @@ public class GameView extends HBox {
         log.setMinHeight(200);
         log.setAlignment(Pos.CENTER);
         Image image = new Image("stratego.png");
-        BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
+        BackgroundSize backgroundSize = new BackgroundSize(1.0, 1.0, true, true, false, false);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
         this.setBackground(background);
@@ -89,8 +89,9 @@ public class GameView extends HBox {
         this.getChildren().addAll(vBox, rightVBox);
         this.setAlignment(Pos.CENTER);
         this.setFillHeight(true);
+        this.setMinSize(1200, 900);
         HBox.setHgrow(rightVBox, Priority.ALWAYS);
-        rightVBox.setMaxSize(1000,1000);
+        rightVBox.setMaxSize(1000, 1000);
     }
 
     protected GridPane getBoard() {

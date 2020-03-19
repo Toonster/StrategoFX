@@ -1,20 +1,17 @@
 package view.gameResultView;
 
-import javafx.scene.control.Label;
-import model.game.GameResult;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import model.game.Game;
+import model.game.GameResult;
 import model.game.GameSetup;
-import model.game.GameStatus;
 import model.unit.UnitColor;
 import view.setupView.SetupPresenter;
 import view.setupView.SetupView;
 
 import java.util.Optional;
-import java.util.Set;
 
 public class GameResultPresenter {
     private GameResult model;
@@ -68,7 +65,7 @@ public class GameResultPresenter {
         if (winner == UnitColor.RED) {
             lblResult.setText("You lost");
             lblMessage.setText("The red team has won the game");
-        } else  {
+        } else {
             lblResult.setText("You won");
             lblMessage.setText("Congratulations, you won!");
         }

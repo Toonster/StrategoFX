@@ -46,6 +46,6 @@ public class Unit {
     }
 
     public String toString() {
-        return String.format("%s - (%d) color: %s id: %d\n", this.rank.name(), this.rank.getStrength(),color,id);
+        return String.format("%s - (%d) color: %s id: %d\n", this.rank.name(), this.rank.getStrength(), color, id);
     }
 }

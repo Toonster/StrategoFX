@@ -5,7 +5,7 @@ import model.common.Position;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BluePositionInitializer implements IPositionInitializer{
+public class BluePositionInitializer implements IPositionInitializer {
 
     List<Position> positions;
 

@@ -1,14 +1,17 @@
 package model.game;
 
-import model.battle.Battle;
 import model.ai.Ai;
+import model.battle.Battle;
 import model.battle.BattleResult;
-import model.board.Tile;
-import model.exception.StrategoException;
-import model.unit.*;
 import model.board.Board;
+import model.board.Tile;
 import model.common.Position;
+import model.exception.StrategoException;
 import model.turn.Turn;
+import model.unit.Rank;
+import model.unit.Unit;
+import model.unit.UnitColor;
+import model.unit.UnitManager;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,7 +19,8 @@ import java.util.stream.Collectors;
 /**
  * de werking van het spel wordt hierin uitgewerkt.
  * Game is het aanspreekpunt van het model voor de presenter
- * @author LABR,WEBR
+ *
+ * @author LABR, WEBR
  * @version 1.12
  */
 
@@ -31,7 +35,7 @@ public class Game {
 
     /**
      * De constructor krijgt een map binnen die alle units met hun unieke posities bevat.
-     *
+     * <p>
      * Via deze map initialiseert de ctr al het benodigde
      *
      * @param initialUnitPositions de beginplaatsen van units
@@ -65,7 +69,6 @@ public class Game {
 
     /**
      * deze methode zorgt ervoor dat onze selected Unit op null komt te staan zodat we een nieuwe kunnen selecteren.
-     *
      */
 
     public void unSelectUnit() throws StrategoException {
@@ -125,6 +128,7 @@ public class Game {
 
     /**
      * Deze methode checkt of een unit naar een positie kan stappen
+     *
      * @param destination de plaats waar de gebruiker klikt
      * @return boolean
      */
@@ -138,6 +142,7 @@ public class Game {
 
     /**
      * Dezen methode checkt of er een unit van hetzelfde team op de destination tile staat
+     *
      * @param destination de plaats waar de gebruiker klikt
      * @return boolean
      */
@@ -158,6 +163,7 @@ public class Game {
 
     /**
      * Deze methode maakt een Battle object aan en verwerkt het resultaat
+     *
      * @param attackingUnit de aanvallende unit
      * @param defendingUnit de verdedigende unit
      */
@@ -214,6 +220,7 @@ public class Game {
 
     /**
      * Deze methode checkt of de vlag van een bepaalde kleur gecaptured is
+     *
      * @param color de kleur van de vlag
      * @return boolean
      */
@@ -224,6 +231,7 @@ public class Game {
 
     /**
      * Deze methode checkt of de units van een bepaalde kleur nog kunnen bewegen
+     *
      * @param color de kleur van de units
      * @return boolean
      */
@@ -242,8 +250,8 @@ public class Game {
             Unit selectedUnit = ai.chooseUnit();
             Position source = board.getPositionById(selectedUnit.getId());
             try {
-            selectUnit(source);
-            Position destination = ai.choosePosition();
+                selectUnit(source);
+                Position destination = ai.choosePosition();
                 if (isMoveValid(destination)) {
                     isMoveCompleted = true;
                     processMove(destination);
@@ -255,6 +263,7 @@ public class Game {
 
     /**
      * Getter om unit te gaan halen met een id
+     *
      * @param unitId de unitId van de unit
      * @return Unit object
      */
@@ -265,6 +274,7 @@ public class Game {
 
     /**
      * Getter om unit te gaan halen op een positie
+     *
      * @param position de positie van de tile
      * @return Unit object
      */
@@ -276,6 +286,7 @@ public class Game {
 
     /**
      * Check of er een unit geselecteerd is
+     *
      * @return boolean
      */
 
@@ -285,6 +296,7 @@ public class Game {
 
     /**
      * Getter om de captured units van een bepaalde kleur te gaan halen
+     *
      * @param color kleur van de units
      * @return Lijst van units
      */
@@ -295,6 +307,7 @@ public class Game {
 
     /**
      * Getter om de zichtbare units te gaan halen
+     *
      * @return Lijst van units
      */
 
@@ -304,6 +317,7 @@ public class Game {
 
     /**
      * Query voor presenter om te weten of het spel gedaan is
+     *
      * @return boolean
      */
 
@@ -313,6 +327,7 @@ public class Game {
 
     /**
      * Getter om gameStatus te gaan halen
+     *
      * @return gameStatus
      */
 
@@ -322,6 +337,7 @@ public class Game {
 
     /**
      * Getter om het gameField te gaan halen bij Board
+     *
      * @return gameField opbject
      */
 
@@ -346,6 +362,7 @@ public class Game {
 
     /**
      * Methode om de huidige selected unit te gaan halen bij turn
+     *
      * @return unit object
      */
 
@@ -355,6 +372,7 @@ public class Game {
 
     /**
      * vraagt aan board om te de positie waarop een id staat te returnen en returnt deze
+     *
      * @param unit de unit in kwestie
      * @return positie van de unit op het bord
      */

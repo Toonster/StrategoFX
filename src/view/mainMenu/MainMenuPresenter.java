@@ -1,6 +1,11 @@
 package view.mainMenu;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -9,19 +14,15 @@ import model.exception.StrategoException;
 import model.fileManager.GameFileManager;
 import model.game.Game;
 import model.game.GameSetup;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import view.settingsView.SettingsPresenter;
-import view.settingsView.SettingsView;
 import view.gameView.GamePresenter;
 import view.gameView.GameView;
 import view.rulesView.RulesPresenter;
 import view.rulesView.RulesView;
+import view.settingsView.SettingsPresenter;
+import view.settingsView.SettingsView;
 import view.setupView.SetupPresenter;
 import view.setupView.SetupView;
+
 import java.io.File;
 
 public class MainMenuPresenter {
@@ -91,30 +92,32 @@ public class MainMenuPresenter {
             public void handle(MouseEvent mouseEvent) {
 
                 FileChooser fileChooser = new FileChooser();
-
-                //Set extension filter for text files
                 FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
                 fileChooser.getExtensionFilters().add(extFilter);
-
                 fileChooser.setTitle("Choose save");
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-
                 Stage openStage = new Stage();
-
-                //Show save file dialog
                 File file = fileChooser.showOpenDialog(openStage);
 
                 if (file != null) {
-                    Game game = null;
+                    Game game;
                     try {
                         game = GameFileManager.load(file.getAbsolutePath());
+                        GameView gameView = new GameView();
+                        GamePresenter gamePresenter = new GamePresenter(gameView, game);
+                        view.getScene().setRoot(gameView);
+                        gameView.getScene().getWindow().sizeToScene();
                     } catch (StrategoException e) {
-                        System.out.println(e.getMessage());
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.initOwner(view.getScene().getWindow());
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Load error");
+                        alert.setContentText("An issue occurred loading the file");
+                        alert.showAndWait();
+                        if (alert.getResult() == ButtonType.OK) {
+                            alert.close();
+                        }
                     }
-                    GameView gameView = new GameView();
-                    GamePresenter gamePresenter = new GamePresenter(gameView, game);
-                    view.getScene().setRoot(gameView);
-                    gameView.getScene().getWindow().sizeToScene();
                 }
             }
         });

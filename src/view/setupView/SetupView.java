@@ -2,17 +2,14 @@ package view.setupView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Side;
-import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import model.unit.Unit;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import view.boardView.BoardView;
 
 
@@ -59,17 +56,17 @@ public class SetupView extends HBox {
         btnSettings.setId("setupBtn");
         this.getStylesheets().add("stratego.css");
         Image image = new Image("stratego.png");
-        BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
+        BackgroundSize backgroundSize = new BackgroundSize(1.0, 1.0, true, true, false, false);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
         this.setBackground(background);
         listOfUnplacedUnits.setPrefWidth(200);
         vBox.setMaxWidth(300);
         vBox.setSpacing(10);
-        vBox.setPadding(new Insets(0,10,0,0));
+        vBox.setPadding(new Insets(0, 10, 0, 0));
         rightVBox.setPadding(new Insets(10));
         rightVBox.setSpacing(10);
-        listOfUnplacedUnits.setPadding(new Insets(0,0,0,10));
+        listOfUnplacedUnits.setPadding(new Insets(0, 0, 0, 10));
         infoText.setWrapText(true);
         infoText.setFont(new Font(15));
         infoText.setEditable(false);
@@ -80,12 +77,12 @@ public class SetupView extends HBox {
         btnSettings.setMaxWidth(Double.MAX_VALUE);
         this.setPadding(new Insets(10));
         rightVBox.getChildren().addAll(unplacedUnitsLabel, listOfUnplacedUnits);
-        vBox.getChildren().addAll(infoText, continueBtn, standardConfigBtn,btnRules, btnSettings, exitBtn);
+        vBox.getChildren().addAll(infoText, continueBtn, standardConfigBtn, btnRules, btnSettings, exitBtn);
         listOfUnplacedUnits.setEditable(true);
         this.getChildren().addAll(vBox, board, rightVBox);
         HBox.setHgrow(board, Priority.ALWAYS);
-        rightVBox.setMinSize(100,300);
-        vBox.setMinSize(100,500);
+        rightVBox.setMinSize(100, 300);
+        vBox.setMinSize(100, 500);
         vBox.setAlignment(Pos.CENTER);
         rightVBox.setAlignment(Pos.CENTER);
         this.setAlignment(Pos.CENTER);

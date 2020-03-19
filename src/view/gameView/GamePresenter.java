@@ -1,13 +1,17 @@
 package view.gameView;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -15,16 +19,9 @@ import model.common.Position;
 import model.exception.StrategoException;
 import model.fileManager.GameFileManager;
 import model.game.Game;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import model.game.GameResult;
 import model.unit.Unit;
 import model.unit.UnitColor;
-import view.customListCell.CustomListCell;
 import view.gameResultView.GameResultPresenter;
 import view.gameResultView.GameResultView;
 import view.rulesView.RulesPresenter;
@@ -75,9 +72,7 @@ public class GamePresenter {
                         model.unSelectUnit();
                     }
                 } catch (StrategoException ex) {
-                    Text errorMessage = new Text(ex.getMessage());
-                    errorMessage.setFill(Color.RED);
-                    view.getLog().setText(view.getLog().getText() + "\n" + errorMessage.getText());
+                    view.getLog().setText(view.getLog().getText() + "\n" + ex.getMessage());
                 }
                 updateView();
             });
@@ -87,14 +82,9 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 FileChooser fileChooser = new FileChooser();
-
-                //Set extension filter for text files
                 FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
                 fileChooser.getExtensionFilters().add(extFilter);
-
                 Stage saveStage = new Stage();
-
-                //Show save file dialog
                 File file = fileChooser.showSaveDialog(saveStage);
 
                 if (file != null) {
@@ -167,6 +157,8 @@ public class GamePresenter {
                     String imagePath = (selectedUnit.getColor() + "_" + selectedUnit.getRank()).toLowerCase() + ".png";
                     ((Button) btn).setGraphic(new ImageView(new Image(imagePath, 40, 40, false, false)));
                 }
+                /*String imagePath = (selectedUnit.getColor() + "_" + selectedUnit.getRank()).toLowerCase() + ".png";
+                ((Button) btn).setGraphic(new ImageView(new Image(imagePath, 40, 40, false, false)));*/
             }
         }
 

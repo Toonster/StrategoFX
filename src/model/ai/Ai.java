@@ -1,6 +1,6 @@
 package model.ai;
 
-import model.common.*;
+import model.common.Position;
 import model.common.PositionGenerator;
 import model.unit.Unit;
 

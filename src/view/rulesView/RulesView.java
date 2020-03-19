@@ -11,7 +11,7 @@ public class RulesView extends VBox {
     private Button backBtn;
     private Label rulesLbl;
 
-    public RulesView(){
+    public RulesView() {
         initialiseNodes();
         layoutNodes();
     }
@@ -24,7 +24,7 @@ public class RulesView extends VBox {
         this.setSpacing(10);
         setAlignment(Pos.CENTER);
         Image image = new Image("stratego.png");
-        BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
+        BackgroundSize backgroundSize = new BackgroundSize(1.0, 1.0, true, true, false, false);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
         this.setBackground(background);
