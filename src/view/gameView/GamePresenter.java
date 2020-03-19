@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -73,7 +75,9 @@ public class GamePresenter {
                         model.unSelectUnit();
                     }
                 } catch (StrategoException ex) {
-                    view.getLog().setText(view.getLog().getText() + "\n" + ex.getMessage());
+                    Text errorMessage = new Text(ex.getMessage());
+                    errorMessage.setFill(Color.RED);
+                    view.getLog().setText(view.getLog().getText() + "\n" + errorMessage.getText());
                 }
                 updateView();
             });
@@ -187,7 +191,8 @@ public class GamePresenter {
         }
 
         if (model.getSelectedUnit() != null) {
-            view.getLog().setText(view.getLog().getText() + "\n" + model.getSelectedUnit().getRank().name() + " selected");
+            Position position = model.getUnitPosition(model.getSelectedUnit());
+            view.getSelectedUnitLbl().setText(model.getSelectedUnit().getRank().name() + " (" + (position.getX() + 1) + " , " + (position.getY() + 1) + ")");
         }
     }
 }

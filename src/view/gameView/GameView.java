@@ -16,6 +16,8 @@ public class GameView extends BorderPane {
     private VBox vBox;
     private Button saveBtn;
     private Button exitBtn;
+    private Label selectedUnitTitleLbl;
+    private Label selectedUnitLbl;
     private Label log;
     private Button rulesBtn;
     private Button btnSettings;
@@ -29,13 +31,14 @@ public class GameView extends BorderPane {
         board = new BoardView();
         redCapturedUnits = new TilePane();
         blueCapturedUnits = new TilePane();
-
         vBox = new VBox();
         saveBtn = new Button("Save Game");
         exitBtn = new Button("Exit");
         log = new Label();
         rulesBtn = new Button("Rules");
         btnSettings = new Button("Settings");
+        selectedUnitTitleLbl = new Label("Selected Unit");
+        selectedUnitLbl = new Label("Selected Unit");
     }
 
     private void layoutNodes() {
@@ -45,29 +48,34 @@ public class GameView extends BorderPane {
         exitBtn.setMaxWidth(Double.MAX_VALUE);
         rulesBtn.setMaxWidth(Double.MAX_VALUE);
         btnSettings.setMaxWidth(Double.MAX_VALUE);
+        selectedUnitTitleLbl.setMaxWidth(Double.MAX_VALUE);
+        selectedUnitLbl.setMaxWidth(Double.MAX_VALUE);
         exitBtn.setId("setupBtn");
         rulesBtn.setId("setupBtn");
         btnSettings.setId("setupBtn");
+        selectedUnitTitleLbl.setId("selectedUnitLbl");
+        selectedUnitLbl.setId("selectedUnitLbl");
         redCapturedUnits.setId("capturedUnitsPane");
         blueCapturedUnits.setId("capturedUnitsPane");
+        selectedUnitTitleLbl.setAlignment(Pos.CENTER);
+        selectedUnitLbl.setAlignment(Pos.CENTER);
         log.setId("logLbl");
         log.setMinHeight(200);
         log.setMinWidth(250);
-        log.setContentDisplay(ContentDisplay.CENTER);
-        log.setTextAlignment(TextAlignment.JUSTIFY);
+        log.setAlignment(Pos.CENTER);
         Image image = new Image("stratego.png");
         BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
         this.setBackground(background);
-        redCapturedUnits.setPrefColumns(20);
-        redCapturedUnits.setAlignment(Pos.CENTER_RIGHT);
+        redCapturedUnits.setPrefColumns(10);
+        redCapturedUnits.setAlignment(Pos.CENTER);
         redCapturedUnits.setMinHeight(50);
         redCapturedUnits.setMaxWidth(board.getMaxWidth()*2);
         blueCapturedUnits.setMaxWidth(board.getMaxWidth()*2);
         blueCapturedUnits.setMinHeight(50);
         blueCapturedUnits.setAlignment(Pos.CENTER);
-        blueCapturedUnits.setPrefColumns(20);
+        blueCapturedUnits.setPrefColumns(10);
         BorderPane.setAlignment(redCapturedUnits, Pos.CENTER_RIGHT);
         BorderPane.setAlignment(blueCapturedUnits, Pos.CENTER_RIGHT);
         vBox.setAlignment(Pos.BOTTOM_CENTER);
@@ -77,7 +85,7 @@ public class GameView extends BorderPane {
         this.setCenter(board);
         this.setTop(blueCapturedUnits);
         this.setBottom(redCapturedUnits);
-        vBox.getChildren().addAll(log, rulesBtn, btnSettings, saveBtn, exitBtn);
+        vBox.getChildren().addAll(selectedUnitTitleLbl, selectedUnitLbl, log, rulesBtn, btnSettings, saveBtn, exitBtn);
         board.setAlignment(Pos.CENTER);
         this.setLeft(vBox);
     }
@@ -112,5 +120,9 @@ public class GameView extends BorderPane {
 
     protected Button getRulesBtn() {
         return rulesBtn;
+    }
+
+    protected Label getSelectedUnitLbl() {
+        return selectedUnitLbl;
     }
 }

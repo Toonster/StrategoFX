@@ -34,12 +34,15 @@ public class GameResultView extends VBox {
         btnStartNew = new Button("Start new game");
         btnExit.setId("setupBtn");
         btnStartNew.setId("setupBtn");
+        lblMessage.setId("resultMessage");
+        lblResult.setId("result");
         Image image = new Image("stratego.png");
         BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
         this.setBackground(background);
         this.setAlignment(Pos.CENTER);
+        this.setSpacing(10);
     }
 
     protected Button getBtnStartNew() {

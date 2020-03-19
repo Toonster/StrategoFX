@@ -352,6 +352,10 @@ public class Game {
     public Unit getSelectedUnit() {
         return this.currentTurn.getSelectedUnit();
     }
+
+    public Position getUnitPosition(Unit unit) {
+        return board.getPositionById(unit.getId());
+    }
 }
 
 

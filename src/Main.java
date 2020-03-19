@@ -1,6 +1,10 @@
 import model.common.Position;
 import model.game.Game;
+import model.game.GameResult;
 import model.game.GameSetup;
+import model.game.GameStatus;
+import view.gameResultView.GameResultPresenter;
+import view.gameResultView.GameResultView;
 import view.gameView.GamePresenter;
 import view.gameView.GameView;
 import javafx.application.Application;
@@ -42,8 +46,11 @@ public class Main extends Application {
         MainMenuView mainMenuView = new MainMenuView();
         MainMenuPresenter mainMenuPresenter = new MainMenuPresenter(mainMenuView);
         MediaPlayer.playMusic();
+        GameResult gameResult = new GameResult(GameStatus.BLUE_NO_MOVES);
+        GameResultView gameResultView = new GameResultView();
+        GameResultPresenter gameResultPresenter = new GameResultPresenter(gameResult, gameResultView);
 
-        Scene scene = new Scene(mainMenuPresenter.getView(),1200,750);
+        Scene scene = new Scene(view,1200,750);
         stage.setTitle("Stratego");
         stage.setScene(scene);
         stage.show();

@@ -66,7 +66,7 @@
     -fx-background-radius: 10;
 }
 
-#unplacedUnitsLbl, #logLbl {
+#unplacedUnitsLbl, #logLbl, #selectedUnitLbl {
     -fx-text-fill: gold;
     -fx-font-family: 'Algerian', serif;
     -fx-font-size: 20px;
@@ -203,4 +203,18 @@
     -fx-background-color :derive(#4D4C4F,10.0%);
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
+}
+
+#resultMessage, #result {
+    -fx-text-fill: gold;
+    -fx-font-family: 'Algerian', serif;
+    -fx-font-size: 45px;
+    -fx-font-weight: bold;
+    -fx-background-color: black;
+    -fx-background-radius: 10;
+}
+
+#result {
+    -fx-font-size: 80px;
+
 }
