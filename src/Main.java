@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.mainMenu.MainMenuPresenter;
 import view.mainMenu.MainMenuView;
+import view.mediaplayer.MediaPlayer;
 import view.setupView.SetupPresenter;
 import view.setupView.SetupView;
 import model.unit.Rank;
@@ -40,6 +41,7 @@ public class Main extends Application {
         GamePresenter presenter = new GamePresenter(view, model);
         MainMenuView mainMenuView = new MainMenuView();
         MainMenuPresenter mainMenuPresenter = new MainMenuPresenter(mainMenuView);
+        MediaPlayer.playMusic();
 
         Scene scene = new Scene(mainMenuPresenter.getView(),1200,750);
         stage.setTitle("Stratego");

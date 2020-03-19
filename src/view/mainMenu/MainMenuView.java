@@ -13,7 +13,6 @@ public class MainMenuView extends GridPane {
     private Button btnSettings;
     private Button btnRules;
     private Button btnQuit;
-    private AudioClip music;
 
     public MainMenuView() {
         initialiseNodes();
@@ -47,8 +46,6 @@ public class MainMenuView extends GridPane {
         btnRules.setId("main");
         btnQuit = new Button("Quit");
         btnQuit.setId("main");
-        music = new AudioClip(this.getClass().getResource("/files/videoplayback.m4a").toString());
-
     }
 
     protected Button getBtnQuit() {

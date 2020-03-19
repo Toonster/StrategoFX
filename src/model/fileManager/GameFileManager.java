@@ -43,7 +43,9 @@ public class GameFileManager {
                 int y = scanner.nextInt();
                 if (id > 0) {
                     Unit unit = units.stream().filter(unit1 -> unit1.getId() == id).findFirst().orElse(null);
-                    unitPositionMap.put(new Position(x, y), unit);
+                    if (unit != null) {
+                        unitPositionMap.put(new Position(x, y), unit);
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
