@@ -50,7 +50,7 @@ public class SettingsPresenter {
         view.getBtnSound().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-/*                if (!isMusicPlaying) {
+                if (!isMusicPlaying) {
                     MainMenuView mainMenuView = new MainMenuView();
                     mainMenuView.getMusic().play();
                     mainMenuView.getMusic().setCycleCount(100);
@@ -58,7 +58,7 @@ public class SettingsPresenter {
                 } else {
                     mainMenuView.getMusic().stop();
                     isMusicPlaying = false;
-                }*/
+                }
             }
         });
     }

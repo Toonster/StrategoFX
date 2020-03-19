@@ -71,4 +71,8 @@ public class MainMenuView extends GridPane {
     public Button getBtnRules() {
         return btnRules;
     }
+
+    public AudioClip getMusic() {
+        return music;
+    }
 }
