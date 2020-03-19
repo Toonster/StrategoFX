@@ -9,6 +9,7 @@ public class GameResult {
 
     public GameResult(GameStatus status) {
         this.status = status;
+        processResult();
     }
 
     private void processResult() {

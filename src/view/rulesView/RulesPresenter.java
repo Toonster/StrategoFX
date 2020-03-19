@@ -24,10 +24,7 @@ public class RulesPresenter {
         view.getBackBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                GameSetup setup = new GameSetup();
-                MainMenuView mainMenuView = new MainMenuView();
-                MainMenuPresenter presenter = new MainMenuPresenter(mainMenuView);
-                view.getBackBtn().getScene().setRoot(mainMenuView);
+                view.getScene().getWindow().hide();
             }
         });
     }

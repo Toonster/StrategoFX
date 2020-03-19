@@ -1,5 +1,9 @@
 package view.setupView;
 
+import javafx.event.ActionEvent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.game.Game;
 import model.game.GameSetup;
 import javafx.scene.control.*;
@@ -17,6 +21,10 @@ import model.unit.UnitColor;
 import view.customListCell.CustomListCell;
 import view.gameView.GamePresenter;
 import view.gameView.GameView;
+import view.rulesView.RulesPresenter;
+import view.rulesView.RulesView;
+import view.settingsView.SettingsPresenter;
+import view.settingsView.SettingsView;
 
 import java.util.Optional;
 
@@ -59,6 +67,7 @@ public class SetupPresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.initOwner(view.getScene().getWindow());
                 alert.setTitle("Overwrite confirmation");
                 alert.setHeaderText("This setup has been used by the winner of many Stratego tournaments.\n Your units " +
                         "will be overwritten and you will not be able to alter them any more.");
@@ -80,6 +89,7 @@ public class SetupPresenter {
 
                 if (model.isSetupDone()) {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.initOwner(view.getScene().getWindow());
                     alert.setTitle("Continue confirmation");
                     alert.setHeaderText("The game will start.");
                     alert.setContentText("Are you sure you want to continue?");
@@ -93,6 +103,7 @@ public class SetupPresenter {
                     }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.initOwner(view.getScene().getWindow());
                     alert.setTitle("Error");
                     alert.setHeaderText("Not complete");
                     alert.setContentText("Please complete the setup phase before continuing");
@@ -108,6 +119,7 @@ public class SetupPresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.initOwner(view.getScene().getWindow());
                 alert.setTitle("Exit");
                 alert.setHeaderText("Are you sure you want to exit?");
                 alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
@@ -117,6 +129,28 @@ public class SetupPresenter {
                 } else if (alert.getResult() == ButtonType.NO) {
                     alert.close();
                 }
+            }
+        });
+
+        view.getBtnRules().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                RulesView rulesView = new RulesView();
+                RulesPresenter presenter = new RulesPresenter(rulesView);
+                Stage rulesStage = new Stage();
+                rulesStage.initOwner(view.getScene().getWindow());
+                rulesStage.initModality(Modality.APPLICATION_MODAL);
+                rulesStage.setScene(new Scene(rulesView));
+                rulesStage.showAndWait();
+            }
+        });
+
+        view.getBtnSettings().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                SettingsView settingsView = new SettingsView();
+                SettingsPresenter presenter = new SettingsPresenter(settingsView, view);
+                view.getScene().setRoot(settingsView);
             }
         });
     }

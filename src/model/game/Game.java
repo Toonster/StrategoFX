@@ -343,6 +343,15 @@ public class Game {
             }
         }
     }
+
+    /**
+     * Methode om de huidige selected unit te gaan halen bij turn
+     * @return unit object
+     */
+
+    public Unit getSelectedUnit() {
+        return this.currentTurn.getSelectedUnit();
+    }
 }
 
 

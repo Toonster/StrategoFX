@@ -5,9 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import model.game.GameResult;
-import model.game.GameStatus;
-import model.unit.UnitColor;
 
 
 public class GameResultView extends VBox {

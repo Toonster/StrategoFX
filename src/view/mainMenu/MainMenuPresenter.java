@@ -42,6 +42,7 @@ public class MainMenuPresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.initOwner(view.getScene().getWindow());
                 alert.setTitle("Exit");
                 alert.setHeaderText("Are you sure you want to exit?");
                 alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
@@ -64,10 +65,6 @@ public class MainMenuPresenter {
                 rulesStage.initModality(Modality.APPLICATION_MODAL);
                 rulesStage.setScene(new Scene(rulesView));
                 rulesStage.showAndWait();
-/*
-                view.getScene().setRoot(rulesView);
-*/
-
             }
         });
 
@@ -85,7 +82,7 @@ public class MainMenuPresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 SettingsView settingsView = new SettingsView();
-                SettingsPresenter presenter = new SettingsPresenter(settingsView);
+                SettingsPresenter presenter = new SettingsPresenter(settingsView, view);
                 view.getScene().setRoot(settingsView);
             }
         });

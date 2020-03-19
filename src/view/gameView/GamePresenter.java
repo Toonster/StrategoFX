@@ -2,9 +2,12 @@ package view.gameView;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.common.Position;
 import model.exception.StrategoException;
@@ -22,6 +25,10 @@ import model.unit.UnitColor;
 import view.customListCell.CustomListCell;
 import view.gameResultView.GameResultPresenter;
 import view.gameResultView.GameResultView;
+import view.rulesView.RulesPresenter;
+import view.rulesView.RulesView;
+import view.settingsView.SettingsPresenter;
+import view.settingsView.SettingsView;
 
 import java.io.File;
 import java.util.List;
@@ -66,7 +73,7 @@ public class GamePresenter {
                         model.unSelectUnit();
                     }
                 } catch (StrategoException ex) {
-                    view.getLog().setText(ex.getMessage());
+                    view.getLog().setText(view.getLog().getText() + "\n" + ex.getMessage());
                 }
                 updateView();
             });
@@ -91,6 +98,10 @@ public class GamePresenter {
                         GameFileManager.save(file.getAbsolutePath(), model);
                     } catch (StrategoException e) {
                         view.getLog().setText(e.getMessage());
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.initOwner(view.getScene().getWindow());
+                        alert.setTitle("File load error");
+                        alert.setHeaderText("Unable to load file");
                     }
                 }
             }
@@ -99,7 +110,8 @@ public class GamePresenter {
         view.getExitBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Alert alert = new Alert(Alert.AlertType.NONE);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.initOwner(view.getScene().getWindow());
                 alert.setTitle("Exit");
                 alert.setHeaderText("Are you sure you want to exit?");
                 alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
@@ -109,6 +121,28 @@ public class GamePresenter {
                 } else if (alert.getResult() == ButtonType.NO) {
                     alert.close();
                 }
+            }
+        });
+
+        view.getBtnSettings().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                SettingsView settingsView = new SettingsView();
+                SettingsPresenter presenter = new SettingsPresenter(settingsView, view);
+                view.getScene().setRoot(settingsView);
+            }
+        });
+
+        view.getRulesBtn().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                RulesView rulesView = new RulesView();
+                RulesPresenter presenter = new RulesPresenter(rulesView);
+                Stage rulesStage = new Stage();
+                rulesStage.initOwner(view.getScene().getWindow());
+                rulesStage.initModality(Modality.APPLICATION_MODAL);
+                rulesStage.setScene(new Scene(rulesView));
+                rulesStage.showAndWait();
             }
         });
     }
@@ -146,6 +180,14 @@ public class GamePresenter {
             String imagePath = (unit.getColor() + "_" + unit.getRank()).toLowerCase() + ".png";
             ImageView imageView = new ImageView(new Image(imagePath, 50, 50, false, false));
             view.getBlueCapturedUnits().getChildren().add(imageView);
+        }
+
+        if (view.getLog().getText().lines().count() > 6) {
+            view.getLog().setText("");
+        }
+
+        if (model.getSelectedUnit() != null) {
+            view.getLog().setText(view.getLog().getText() + "\n" + model.getSelectedUnit().getRank().name() + " selected");
         }
     }
 }

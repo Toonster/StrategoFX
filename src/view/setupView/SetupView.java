@@ -27,6 +27,8 @@ public class SetupView extends HBox {
     private Button exitBtn;
     private VBox rightVBox;
     private Label unplacedUnitsLabel;
+    private Button btnRules;
+    private Button btnSettings;
 
     public SetupView() {
         initialiseNodes();
@@ -43,6 +45,8 @@ public class SetupView extends HBox {
         exitBtn = new Button("Exit");
         rightVBox = new VBox();
         unplacedUnitsLabel = new Label("Unplaced Units");
+        btnRules = new Button("Rules");
+        btnSettings = new Button("Settings");
     }
 
     private void layoutNodes() {
@@ -51,6 +55,8 @@ public class SetupView extends HBox {
         continueBtn.setId("setupBtn");
         standardConfigBtn.setId("setupBtn");
         exitBtn.setId("setupBtn");
+        btnRules.setId("setupBtn");
+        btnSettings.setId("setupBtn");
         this.getStylesheets().add("stratego.css");
         Image image = new Image("stratego.png");
         BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
@@ -70,9 +76,11 @@ public class SetupView extends HBox {
         continueBtn.setMaxWidth(Double.MAX_VALUE);
         standardConfigBtn.setMaxWidth(Double.MAX_VALUE);
         exitBtn.setMaxWidth(Double.MAX_VALUE);
+        btnRules.setMaxWidth(Double.MAX_VALUE);
+        btnSettings.setMaxWidth(Double.MAX_VALUE);
         this.setPadding(new Insets(10));
         rightVBox.getChildren().addAll(unplacedUnitsLabel, listOfUnplacedUnits);
-        vBox.getChildren().addAll(infoText, continueBtn, standardConfigBtn, exitBtn);
+        vBox.getChildren().addAll(infoText, continueBtn, standardConfigBtn,btnRules, btnSettings, exitBtn);
         listOfUnplacedUnits.setEditable(true);
         this.getChildren().addAll(vBox, board, rightVBox);
         HBox.setHgrow(board, Priority.ALWAYS);
@@ -103,5 +111,13 @@ public class SetupView extends HBox {
 
     protected Button getExitBtn() {
         return exitBtn;
+    }
+
+    protected Button getBtnRules() {
+        return btnRules;
+    }
+
+    protected Button getBtnSettings() {
+        return btnSettings;
     }
 }

@@ -2,11 +2,10 @@ package view.gameView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.text.TextAlignment;
 import view.boardView.BoardView;
 
 public class GameView extends BorderPane {
@@ -18,6 +17,8 @@ public class GameView extends BorderPane {
     private Button saveBtn;
     private Button exitBtn;
     private Label log;
+    private Button rulesBtn;
+    private Button btnSettings;
 
     public GameView() {
         intialiseNodes();
@@ -33,16 +34,27 @@ public class GameView extends BorderPane {
         saveBtn = new Button("Save Game");
         exitBtn = new Button("Exit");
         log = new Label();
+        rulesBtn = new Button("Rules");
+        btnSettings = new Button("Settings");
     }
 
     private void layoutNodes() {
         this.getStylesheets().add("stratego.css");
         saveBtn.setId("setupBtn");
+        saveBtn.setMaxWidth(Double.MAX_VALUE);
+        exitBtn.setMaxWidth(Double.MAX_VALUE);
+        rulesBtn.setMaxWidth(Double.MAX_VALUE);
+        btnSettings.setMaxWidth(Double.MAX_VALUE);
         exitBtn.setId("setupBtn");
+        rulesBtn.setId("setupBtn");
+        btnSettings.setId("setupBtn");
         redCapturedUnits.setId("capturedUnitsPane");
         blueCapturedUnits.setId("capturedUnitsPane");
         log.setId("logLbl");
-        log.setMinWidth(200);
+        log.setMinHeight(200);
+        log.setMinWidth(250);
+        log.setContentDisplay(ContentDisplay.CENTER);
+        log.setTextAlignment(TextAlignment.JUSTIFY);
         Image image = new Image("stratego.png");
         BackgroundSize backgroundSize = new BackgroundSize(1.0,1.0, true, true, false, false);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
@@ -56,12 +68,16 @@ public class GameView extends BorderPane {
         blueCapturedUnits.setMinHeight(50);
         blueCapturedUnits.setAlignment(Pos.CENTER);
         blueCapturedUnits.setPrefColumns(20);
+        BorderPane.setAlignment(redCapturedUnits, Pos.CENTER_RIGHT);
+        BorderPane.setAlignment(blueCapturedUnits, Pos.CENTER_RIGHT);
         vBox.setAlignment(Pos.BOTTOM_CENTER);
+        vBox.setSpacing(10);
+        vBox.setMaxWidth(300);
         this.setPadding(new Insets(10));
         this.setCenter(board);
         this.setTop(blueCapturedUnits);
         this.setBottom(redCapturedUnits);
-        vBox.getChildren().addAll(log, saveBtn, exitBtn);
+        vBox.getChildren().addAll(log, rulesBtn, btnSettings, saveBtn, exitBtn);
         board.setAlignment(Pos.CENTER);
         this.setLeft(vBox);
     }
@@ -86,7 +102,15 @@ public class GameView extends BorderPane {
         return redCapturedUnits;
     }
 
-    public TilePane getBlueCapturedUnits() {
+    protected TilePane getBlueCapturedUnits() {
         return blueCapturedUnits;
+    }
+
+    protected Button getBtnSettings() {
+        return btnSettings;
+    }
+
+    protected Button getRulesBtn() {
+        return rulesBtn;
     }
 }

@@ -48,6 +48,7 @@ public class GameResultPresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.initOwner(view.getScene().getWindow());
                 alert.setTitle("Exit");
                 alert.setHeaderText("Are you sure you want to exit?");
                 alert.getButtonTypes().addAll(ButtonType.YES,ButtonType.NO);
@@ -64,11 +65,11 @@ public class GameResultPresenter {
     private void updateView() {
         UnitColor winner = model.getWinner();
         Label lblResult = view.getLblResult();
-        Label lblMessage = view.getLblResult();
+        Label lblMessage = view.getLblMessage();
         if (winner == UnitColor.RED) {
             lblResult.setText("You lost");
             lblMessage.setText("The red team has won the game");
-        } else if (winner == UnitColor.BLUE) {
+        } else  {
             lblResult.setText("You won");
             lblMessage.setText("Congratulations, you won!");
         }
