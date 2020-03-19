@@ -117,12 +117,12 @@ public class GamePresenter {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.initOwner(view.getScene().getWindow());
                 alert.setTitle("Exit");
+                alert.setContentText("Unsaved progress will be lost!");
                 alert.setHeaderText("Are you sure you want to exit?");
-                alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
                 alert.showAndWait();
-                if (alert.getResult() == ButtonType.YES) {
+                if (alert.getResult() == ButtonType.OK) {
                     System.exit(0);
-                } else if (alert.getResult() == ButtonType.NO) {
+                } else {
                     alert.close();
                 }
             }
@@ -192,7 +192,9 @@ public class GamePresenter {
 
         if (model.getSelectedUnit() != null) {
             Position position = model.getUnitPosition(model.getSelectedUnit());
-            view.getSelectedUnitLbl().setText(model.getSelectedUnit().getRank().name() + " (" + (position.getX() + 1) + " , " + (position.getY() + 1) + ")");
+            view.getSelectedUnitLbl().setText(model.getSelectedUnit().getRank().name() + " (" + (position.getX() + 1) + " , " + (position.getY() + 1) + ")" + "\n(Right-click to unselect)");
+        } else {
+            view.getSelectedUnitLbl().setText("No unit selected");
         }
     }
 }

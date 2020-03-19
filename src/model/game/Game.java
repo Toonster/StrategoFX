@@ -353,6 +353,12 @@ public class Game {
         return this.currentTurn.getSelectedUnit();
     }
 
+    /**
+     * vraagt aan board om te de positie waarop een id staat te returnen en returnt deze
+     * @param unit de unit in kwestie
+     * @return positie van de unit op het bord
+     */
+
     public Position getUnitPosition(Unit unit) {
         return board.getPositionById(unit.getId());
     }

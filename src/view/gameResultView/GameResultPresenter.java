@@ -47,15 +47,14 @@ public class GameResultPresenter {
         view.getBtnExit().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Alert alert = new Alert(Alert.AlertType.NONE);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.initOwner(view.getScene().getWindow());
                 alert.setTitle("Exit");
                 alert.setHeaderText("Are you sure you want to exit?");
-                alert.getButtonTypes().addAll(ButtonType.YES,ButtonType.NO);
                 alert.showAndWait();
-                if (alert.getResult() == ButtonType.YES){
+                if (alert.getResult() == ButtonType.OK) {
                     System.exit(0);
-                }else if (alert.getResult() == ButtonType.NO){
+                } else {
                     alert.close();
                 }
             }

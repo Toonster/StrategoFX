@@ -45,7 +45,7 @@ public class Main extends Application {
         GamePresenter presenter = new GamePresenter(view, model);
         MainMenuView mainMenuView = new MainMenuView();
         MainMenuPresenter mainMenuPresenter = new MainMenuPresenter(mainMenuView);
-        MediaPlayer.playMusic();
+        /*MediaPlayer.playMusic();*/
         GameResult gameResult = new GameResult(GameStatus.BLUE_NO_MOVES);
         GameResultView gameResultView = new GameResultView();
         GameResultPresenter gameResultPresenter = new GameResultPresenter(gameResult, gameResultView);
