@@ -102,7 +102,6 @@ public class SetupPresenter {
                         GameView gameView = new GameView();
                         GamePresenter gamePresenter = new GamePresenter(gameView, game);
                         view.getScene().setRoot(gameView);
-                        gameView.getScene().getWindow().sizeToScene();
                     }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -78,6 +78,7 @@ public class GameView extends HBox {
         blueCapturedUnits.setMinHeight(100);
         blueCapturedUnits.setAlignment(Pos.CENTER);
         blueCapturedUnits.setPrefColumns(10);
+        selectedUnitLbl.setMinHeight(100);
         vBox.setSpacing(10);
         vBox.setMinWidth(300);
         this.setPadding(new Insets(10));

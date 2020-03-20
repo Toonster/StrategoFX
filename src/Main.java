@@ -7,6 +7,7 @@ import view.gameResultView.GameResultPresenter;
 import view.gameResultView.GameResultView;
 import view.mainMenu.MainMenuPresenter;
 import view.mainMenu.MainMenuView;
+import view.mediaplayer.MediaPlayer;
 
 public class Main extends Application {
 
@@ -19,12 +20,12 @@ public class Main extends Application {
 
         MainMenuView mainMenuView = new MainMenuView();
         MainMenuPresenter mainMenuPresenter = new MainMenuPresenter(mainMenuView);
-        /*MediaPlayer.playMusic();*/
+        MediaPlayer.playMusic();
         GameResult gameResult = new GameResult(GameStatus.BLUE_NO_MOVES);
         GameResultView gameResultView = new GameResultView();
         GameResultPresenter gameResultPresenter = new GameResultPresenter(gameResult, gameResultView);
 
-        Scene scene = new Scene(gameResultView, 1200, 800);
+        Scene scene = new Scene(mainMenuView, 1200, 800);
         stage.setTitle("Stratego");
         stage.setScene(scene);
         stage.show();

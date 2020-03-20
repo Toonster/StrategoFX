@@ -67,7 +67,7 @@ public class GameResultPresenter {
             lblMessage.setText("The red team has won the game");
         } else {
             lblResult.setText("You won");
-            lblMessage.setText("Congratulations, you won!");
+            lblMessage.setText("The blue team has won the game");
         }
     }
 }
