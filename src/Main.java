@@ -24,7 +24,7 @@ public class Main extends Application {
         GameResultView gameResultView = new GameResultView();
         GameResultPresenter gameResultPresenter = new GameResultPresenter(gameResult, gameResultView);
 
-        Scene scene = new Scene(mainMenuView, 1200, 800);
+        Scene scene = new Scene(gameResultView, 1200, 800);
         stage.setTitle("Stratego");
         stage.setScene(scene);
         stage.show();

@@ -213,6 +213,10 @@
     -fx-font-weight: bold;
     -fx-background-color: black;
     -fx-background-radius: 10;
+    -fx-padding: 5px;
+    -fx-border-color: gold;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
 }
 
 #result {
